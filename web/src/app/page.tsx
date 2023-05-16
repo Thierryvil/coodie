@@ -1,18 +1,18 @@
 import { Footer } from './components/Footer'
-import { GrayButton } from './components/GrayButton'
-import { GreenButton } from './components/GreenButton'
 import { Navbar } from './components/Navbar'
+import { Lexend_Zetta } from 'next/font/google'
 import './global.css'
+
+const zetta = Lexend_Zetta({ subsets: ['latin'] })
 
 export default function Home() {
   return (
     <>
       <Navbar />
       <main>
-        <h1>Encontre a oportunidade perfeita para VOCÊ.</h1>
+        <p className={zetta.className}>Encontre a oportunidade <br />perfeita para VOCÊ.</p>
       </main>
       <Footer />
-
     </>
   )
 }
