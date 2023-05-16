@@ -9,7 +9,7 @@ export function Navbar() {
         <nav className="flex items-center justify-between py-4 px-8">
             <div className='flex space-x-4 justify-center'>
                 <Logo />
-                <ul className='flex space-x-8 justify-center'>
+                <ul className='flex space-x-8 items-center'>
                     <li><a href="#">SALÁRIOS</a></li>
                     <li><a href="#">VAGAS</a></li>
                     <li><a href="#">EMPRESAS</a></li>
