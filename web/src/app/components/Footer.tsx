@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInstagram, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faInstagram, faFacebookF, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 export function Footer() {
     return (
@@ -8,10 +8,10 @@ export function Footer() {
             <div className="flex-col items-center justify-center">
                 <div className='flex space-x-4 items-center justify-center mb-4'>
                     <a href="#">
-                        <FontAwesomeIcon className='w-8 h-8' icon={faInstagram} />
+                        <FontAwesomeIcon className='w-8 h-8' icon={faFacebookF} />
                     </a>
                     <a href="#">
-                        <FontAwesomeIcon className='w-8 h-8' icon={faFacebook} />
+                        <FontAwesomeIcon className='w-8 h-8' icon={faInstagram} />
                     </a>
                     <a href="#">
                         <FontAwesomeIcon className='w-8 h-8' icon={faTwitter} />

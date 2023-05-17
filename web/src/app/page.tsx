@@ -1,5 +1,6 @@
 import { Footer } from './components/Footer'
 import { Navbar } from './components/Navbar'
+import { JobBox } from './components/JobBox'
 import { Lexend_Zetta } from 'next/font/google'
 import Image from 'next/image';
 import './global.css'
@@ -12,10 +13,20 @@ export default function Home() {
       <Navbar />
       <main>
         <div className='mt-8 flex flex-col items-center'>
-          <p className={`${zetta.className} text-3xl text-center`}>Encontre a oportunidade <br />perfeita para VOCÊ.</p>
-          <Image className="flex justify-center" src="/hiring.svg" alt="Descrição da imagem" width={665} height={547} />
+          <div className='mb-20'>
+            <p className={`${zetta.className} text-3xl text-center`}>Encontre a oportunidade <br />perfeita para VOCÊ.</p>
+            <Image className="flex justify-center" src="/hiring.svg" alt="Descrição da imagem" width={665} height={547} />
+          </div>
+          <div className='w-full bg-gray-200 py-4 text-center'>
+            <span className={`${zetta.className} text-3xl`}>NOSSAS ÚLTIMAS VAGAS</span>
+            <div className='flex space-x-20 items-center justify-center py-8'>
+              <JobBox />
+              <JobBox />
+              <JobBox />
+            </div>
+          </div>
         </div>
-      </main>
+      </main >
       <Footer />
     </>
   )

@@ -1,10 +1,11 @@
 interface GrayButtonProps {
     texto: string
+    onClick: () => void,
 }
 
-export function GrayButton({ texto }: GrayButtonProps) {
+export function GrayButton({ texto, onClick }: GrayButtonProps) {
     return (
-        <button className="w-32 h-10 text-sm font-bold bg-gray-300 border-none">
+        <button onClick={onClick} className="w-32 h-10 text-sm font-bold bg-gray-300 border-none">
             {texto}
         </button>
     );
