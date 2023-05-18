@@ -12,7 +12,9 @@ export default function EnterpriseTimeline() {
         <>
             <nav className="flex items-center justify-between py-4 px-8">
                 <div className="mr-auto" >
-                    <Logo />
+                    <Link href="/">
+                        <Logo />
+                    </Link>
                 </div>
                 <Avatar />
             </nav>

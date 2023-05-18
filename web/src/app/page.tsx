@@ -16,7 +16,7 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    const userLoggedIn = true;
+    const userLoggedIn = localStorage.getItem('accessToken');
 
     if (userLoggedIn) {
       router.replace('/enterprise-timeline');
