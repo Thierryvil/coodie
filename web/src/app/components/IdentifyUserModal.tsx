@@ -26,8 +26,8 @@ export function IdentifyUserModal({ isOpen, closeModal }: ModalProps) {
                 <div className='flex flex-col items-center justify-center'>
                     <Image src='/welcome.svg' alt="welcome" width='460' height='220' />
                     <div className='flex space-x-4 mt-5'>
-                        <GrayButton texto='Sou Candidato' onClick={() => null} />
-                        <GrayButton texto='Sou Empresa' onClick={() => null} />
+                        <GrayButton text='Sou Candidato' onClick={() => null} />
+                        <GrayButton text='Sou Empresa' onClick={() => null} />
                     </div>
                 </div>
             </ReactModal>

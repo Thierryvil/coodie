@@ -14,7 +14,7 @@ export function JobBox() {
                 <Image src="/puc_minas.png" alt="logo puc minas" width="150" height="150" />
             </div>
             <div className='flex flex-col items-center justify-between mt-auto'>
-                <GreenButton texto="VER VAGA" onClick={() => null} />
+                <GreenButton text="VER VAGA" onClick={() => null} />
             </div>
         </div>
     )

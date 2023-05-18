@@ -1,13 +1,28 @@
-import { Footer } from './components/Footer'
-import { Navbar } from './components/Navbar'
-import { JobBox } from './components/JobBox'
-import { Lexend_Zetta } from 'next/font/google'
-import Image from 'next/image';
-import './global.css'
+'use client'
 
-const zetta = Lexend_Zetta({ subsets: ['latin'] })
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import { Lexend_Zetta } from 'next/font/google';
+
+import { Footer } from './components/Footer';
+import { Navbar } from './components/Navbar';
+import { JobBox } from './components/JobBox';
+import './global.css';
+
+const zetta = Lexend_Zetta({ subsets: ['latin'] });
 
 export default function Home() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const userLoggedIn = true;
+
+    if (userLoggedIn) {
+      router.push('/enterprise-timeline');
+    }
+  }, [router]);
+
   return (
     <>
       <Navbar />
@@ -26,8 +41,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </main >
+      </main>
       <Footer />
     </>
-  )
+  );
 }

@@ -31,10 +31,10 @@ export function Navbar() {
             </div>
             <div className='flex space-x-4 justify-center'>
                 <Link href="/login">
-                    <GrayButton texto="ENTRAR" onClick={() => null} />
+                    <GrayButton text="ENTRAR" onClick={() => null} />
                 </Link>
                 <IdentifyUserModal isOpen={isOpen} closeModal={closeModal} />
-                <GreenButton texto="REGISTRE-SE" onClick={openModal} />
+                <GreenButton text="REGISTRE-SE" onClick={openModal} size='medium' />
             </div>
         </nav>
     );
