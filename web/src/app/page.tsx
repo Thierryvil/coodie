@@ -19,7 +19,7 @@ export default function Home() {
     const userLoggedIn = true;
 
     if (userLoggedIn) {
-      router.push('/enterprise-timeline');
+      router.replace('/enterprise-timeline');
     }
   }, [router]);
 

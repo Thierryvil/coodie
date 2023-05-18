@@ -1,6 +1,6 @@
 import { Roboto } from 'next/font/google'
 
-const roboto = Roboto({ subsets: ['latin'], weight: '400' })
+const roboto = Roboto({ subsets: ['latin'], weight: '300' })
 
 export const metadata = {
   title: 'coodie',
