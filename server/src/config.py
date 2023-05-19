@@ -1,13 +1,11 @@
-
-from dynaconf import Dynaconf, Validator
+from dynaconf import Dynaconf
 
 
 settings = Dynaconf(
-    settings_file=["settings.toml", '.secrets.toml'],
-    validators=[
-        Validator('DATABASE_NAME', must_exist=True),
-        Validator('AUTH0_DOMAIN', must_exist=True),
-        Validator('AUTH0_CLIENT_ID', must_exist=True),
-        Validator('AUTH0_CLIENT_SECRET', must_exist=True)
-    ]
+    envvar_prefix="DYNACONF",
+    enviroments=["development", "testing", "production"],
+    load_env=True,
+    enviroment=True,
+    settings_files=["settings.toml", ".secrets.toml"],
+    env_switcher="ENV_FOR_DYNACONF"
 )

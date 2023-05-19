@@ -1,4 +1,5 @@
-DATABASE_NAME = "database.db"
-
 [testing]
 DATABASE_NAME = "test.db"
+
+[development]
+DATABASE_NAME = "database.db"
