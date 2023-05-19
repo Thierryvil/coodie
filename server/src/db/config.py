@@ -1,7 +1,7 @@
 from sqlmodel import create_engine
-from src.configs.settings import DATABASE_NAME
+from src.config import settings
 # flake8: noqa
 from src.schemas.enterprise_schema import EnterpriseSchema
 from src.schemas.job_schema import JobSchema
 
-engine = create_engine(f"sqlite:///{DATABASE_NAME}")
+engine = create_engine(f"sqlite:///{settings.DATABASE_NAME}")

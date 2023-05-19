@@ -1,0 +1,4 @@
+DATABASE_NAME = "database.db"
+
+[testing]
+DATABASE_NAME = "test.db"
