@@ -1,5 +1,5 @@
+from app import app
 from fastapi.testclient import TestClient
-from src.app import app
 
 client = TestClient(app)
 
@@ -111,4 +111,11 @@ def test_valid_job():
     }
     response = client.post("/enterprise/jobs", json=data)
     assert response.status_code == 201
-    assert response.json() == data
+    assert response.json() == {
+        "id": None,
+        "title": "Software Developer",
+        "description": "Some description",
+        "seniority": ["junior"],
+        "location": ["remoto"],
+        "regime": ["clt"],
+    }

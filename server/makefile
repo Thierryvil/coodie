@@ -6,7 +6,10 @@ clean:
 	$(RM) -rf .pytest_cache
 
 test:
-	export ENV_FOR_DYNACONF=testing && pytest -vv -W ignore::DeprecationWarning
+	COODIE_MODE=testing pytest -vv -W ignore::DeprecationWarning
 
 dev:
-	export ENV_FOR_DYNACONF=development && uvicorn src.app:app --reload
+	cd src && COODIE_MODE=development uvicorn app:app --reload
+
+code-convention:
+	poetry run flake8

@@ -1,6 +1,12 @@
 [testing]
 DATABASE_NAME = "test.db"
 
+[development]
+DATABASE_NAME = "dev.db"
+
+[production]
+DATABASE_NAME = "production.db"
+
 [default]
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30

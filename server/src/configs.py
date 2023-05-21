@@ -1,10 +1,16 @@
+from os.path import dirname, realpath
+
 from dynaconf import Dynaconf
 
+current_directory = dirname(realpath(__file__))
+
 settings = Dynaconf(
-    envvar_prefix="DYNACONF",
-    enviroments=["development", "testing", "production"],
-    load_env=True,
-    enviroment=True,
-    settings_files=["settings.toml", ".secrets.toml"],
-    env_switcher="ENV_FOR_DYNACONF",
+    root_path=current_directory,
+    envvar_prefix="COODIE",
+    environments=True,
+    settings_files=[
+        "settings.toml",
+        ".secrets.toml",
+    ],
+    env_switcher="COODIE_MODE",
 )
