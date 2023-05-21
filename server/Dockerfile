@@ -1,4 +1,4 @@
-FROM python:3.11-slim-bullseye
+FROM python:3.11-slim-bullseye as build-stage
 
 ENV PYTHONUNBUFFERED 1
 ENV PATH="/root/.local/bin:$PATH"
@@ -14,6 +14,14 @@ RUN apt-get update -y \
   && poetry install --no-dev \
   && apt-get remove curl -y
 
+FROM python:3.11-slim-bullseye as final-stage
+
+ENV PYTHONUNBUFFERED 1
+ENV PATH="/root/.local/bin:$PATH"
+
+WORKDIR /app
+
+COPY --from=build-stage /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
 COPY src/ /app/
 
 EXPOSE 8080
