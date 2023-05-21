@@ -1,9 +1,8 @@
+from db.config import create_tables
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from sqlmodel import SQLModel
-from src.db.config import engine
-from src.routes.auth_routes import router as auth_router
-from src.routes.enterprise_routes import router as enterprise_router
+from routes.auth_routes import router as auth_router
+from routes.enterprise_routes import router as enterprise_router
 
 app = FastAPI()
 app.include_router(enterprise_router)
@@ -16,4 +15,4 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-SQLModel.metadata.create_all(engine)
+create_tables()

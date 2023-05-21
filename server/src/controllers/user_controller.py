@@ -1,6 +1,6 @@
-from src.db.config import get_session
-from src.models.user import User
-from src.schemas.user_schema import UserSchema
+from db.config import get_session
+from models.user import User
+from schemas.user_schema import UserSchema
 
 
 def get_user_by_email(email: str):

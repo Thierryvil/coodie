@@ -1,10 +1,10 @@
 from bcrypt import checkpw
+from controllers.token_controller import create_access_token, decode_access_token
+from controllers.user_controller import get_user_by_email, get_user_by_id
 from fastapi import Depends, HTTPException, status
 from fastapi.routing import APIRouter
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from src.controllers.token_controller import create_access_token, decode_access_token
-from src.controllers.user_controller import get_user_by_email, get_user_by_id
-from src.models.token import Token
+from models.token import Token
 
 router = APIRouter(prefix="/auth")
 

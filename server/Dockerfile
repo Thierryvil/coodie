@@ -1,0 +1,23 @@
+FROM python:3.11-slim-bullseye
+
+ENV PYTHONUNBUFFERED 1
+ENV PATH="/root/.local/bin:$PATH"
+
+WORKDIR /app
+
+COPY pyproject.toml poetry.lock /app/
+
+RUN apt-get update -y \
+  && apt-get install curl -y \
+  && curl -sSL https://install.python-poetry.org | python3 - \
+  && poetry config virtualenvs.create false \
+  && poetry install --no-dev \
+  && apt-get remove curl -y
+
+COPY src/ /app/
+
+EXPOSE 8080
+
+HEALTHCHECK CMD curl --fail http://localhost:8080 || exit 1
+
+CMD ["gunicorn", "app:app", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "-b", ":8080"]

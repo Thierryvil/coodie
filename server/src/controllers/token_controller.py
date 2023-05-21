@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 
+from configs import settings
 from jose import jwt
-from src.config import settings
 
 
 def create_access_token(user_id: int) -> str:

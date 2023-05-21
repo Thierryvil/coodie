@@ -1,5 +1,5 @@
 from fastapi.routing import APIRouter
-from src.models.job import Job
+from models.job import Job
 
 router = APIRouter(prefix="/enterprise")
 
