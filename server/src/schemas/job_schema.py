@@ -1,9 +1,10 @@
-from sqlmodel import SQLModel, Field
 from typing import Optional, Set
+
+from sqlmodel import Field, SQLModel
 
 
 class JobSchema(SQLModel, table=True):
-    __tablename__ = "jobs"
+    __tablename__: str = "jobs"
 
     id: Optional[int] = Field(default=None, primary_key=True)
     title: str = Field(sa_column_kwargs={"nullable": False})
