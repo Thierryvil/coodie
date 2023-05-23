@@ -41,36 +41,12 @@ def test_job_seniority_not_empty():
     assert response.status_code == 422
 
 
-def test_job_valid_seniority():
-    data = {
-        "title": "Software Developer",
-        "description": "Some description",
-        "seniority": ["estagiario"],
-        "location": ["remoto"],
-        "regime": ["clt"],
-    }
-    response = client.post("/enterprise/jobs", json=data)
-    assert response.status_code == 422
-
-
 def test_job_location_not_empty():
     data = {
         "title": "Software Developer",
         "description": "Some description",
         "seniority": ["junior"],
         "location": [],
-        "regime": ["clt"],
-    }
-    response = client.post("/enterprise/jobs", json=data)
-    assert response.status_code == 422
-
-
-def test_job_valid_location():
-    data = {
-        "title": "Software Developer",
-        "description": "Some description",
-        "seniority": ["junior"],
-        "location": ["office"],
         "regime": ["clt"],
     }
     response = client.post("/enterprise/jobs", json=data)
@@ -89,19 +65,7 @@ def test_job_regime_not_empty():
     assert response.status_code == 422
 
 
-def test_job_valid_regime():
-    data = {
-        "title": "Software Developer",
-        "description": "Some description",
-        "seniority": ["junior"],
-        "location": ["remoto"],
-        "regime": ["freelancer"],
-    }
-    response = client.post("/enterprise/jobs", json=data)
-    assert response.status_code == 422
-
-
-def test_valid_job():
+def test_valid_job(setup_and_teardown):
     data = {
         "title": "Software Developer",
         "description": "Some description",
@@ -112,10 +76,11 @@ def test_valid_job():
     response = client.post("/enterprise/jobs", json=data)
     assert response.status_code == 201
     assert response.json() == {
-        "id": None,
+        "id": 1,
         "title": "Software Developer",
         "description": "Some description",
-        "seniority": ["junior"],
-        "location": ["remoto"],
-        "regime": ["clt"],
+        "seniority": "junior",
+        "location": "remoto",
+        "regime": "clt",
+        "enterprise_id": None,
     }

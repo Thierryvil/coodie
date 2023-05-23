@@ -1,4 +1,4 @@
-from typing import Optional, Set
+from typing import List, Optional
 
 from pydantic import BaseModel, validator
 
@@ -7,9 +7,9 @@ class Job(BaseModel):
     id: Optional[int]
     title: str
     description: str
-    seniority: Set[str]
-    location: Set[str]
-    regime: Set[str]
+    seniority: List[str]
+    location: List[str]
+    regime: List[str]
 
     @validator("title")
     def title_must_not_be_blank(cls, v):
@@ -27,7 +27,7 @@ class Job(BaseModel):
     def validate_seniority(cls, v):
         if not v:
             raise ValueError("Empty seniority")
-        invalid_seniority = v - {"junior", "pleno", "senior"}
+        invalid_seniority = set(v) - {"junior", "pleno", "senior"}
         if invalid_seniority:
             raise ValueError(f"Invalid seniority: {invalid_seniority}")
         return v
@@ -37,7 +37,7 @@ class Job(BaseModel):
         if not v:
             raise ValueError("Empty location")
 
-        invalid_location = v - {"remoto", "hibrido", "presencial"}
+        invalid_location = set(v) - {"remoto", "hibrido", "presencial"}
         if invalid_location:
             raise ValueError(f"Invalid location: {invalid_location}")
         return v
@@ -47,7 +47,7 @@ class Job(BaseModel):
         if not v:
             raise ValueError("Empty regime")
 
-        invalid_regime = v - {"clt", "pj"}
+        invalid_regime = set(v) - {"clt", "pj"}
         if invalid_regime:
             raise ValueError(f"Invalid regime: {invalid_regime}")
         return v
