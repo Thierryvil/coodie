@@ -15,10 +15,10 @@ class Job(BaseModel):
     regime: List[str]
 
     @classmethod
-    def validate_string_non_blank(cls, value, field_name):
-        if not value.strip():
+    def validate_string_non_blank(cls, v, field_name):
+        if not v.strip():
             raise ValueError(f"{field_name.capitalize()} must not be blank.")
-        return value
+        return v
 
     @validator("title")
     def validate_title(cls, v):

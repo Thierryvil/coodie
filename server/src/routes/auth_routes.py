@@ -1,10 +1,11 @@
-from bcrypt import checkpw
-from controllers.token_controller import create_access_token
-from controllers.user_controller import get_user_by_email
 from fastapi import Depends, HTTPException, status
 from fastapi.routing import APIRouter
 from fastapi.security import OAuth2PasswordRequestForm
+
+from controllers.token_controller import create_access_token
+from controllers.user_controller import get_user_by_email
 from models.token import Token
+from utils.bcrypt import verify_password
 
 router = APIRouter(prefix="/auth")
 
@@ -19,16 +20,17 @@ async def login(form=Depends(OAuth2PasswordRequestForm)):
             "Credenciais inválidas",
         )
 
-    if not checkpw(
-        form.password.encode("utf-8"),
-        user_db.password.encode("utf-8"),
-    ):
+    if not verify_password(form.password, user_db.password):
         raise HTTPException(
             status.HTTP_401_UNAUTHORIZED,
             "Credenciais inválidas",
         )
 
     return {
+        "user": {
+            "id": user_db.id,
+            "username": user_db.email,
+        },
         "access_token": create_access_token(user_db.id),
         "token_type": "bearer",
     }

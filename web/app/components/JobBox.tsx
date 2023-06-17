@@ -19,7 +19,7 @@ export function JobBox() {
         />
       </div>
       <div className="flex flex-col items-center justify-between mt-auto">
-        <GreenButton text="VER VAGA" onClick={() => null} size="medium" />
+        <GreenButton text="VER VAGA" size="medium" />
       </div>
     </div>
   );

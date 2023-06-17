@@ -14,5 +14,5 @@ class JobSchema(SQLModel, table=True):
     regime: str = Field()
     enterprise_id: Optional[int] = Field(
         default=None,
-        foreign_key="enterprises.id",
+        foreign_key="users.id",
     )

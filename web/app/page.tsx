@@ -1,10 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Lexend_Zetta } from "next/font/google";
-
 import { Footer } from "./components/Footer";
 import { Navbar } from "./components/Navbar";
 import { JobBox } from "./components/JobBox";
@@ -13,16 +10,6 @@ import "./global.css";
 const zetta = Lexend_Zetta({ subsets: ["latin"] });
 
 export default function Home() {
-  const router = useRouter();
-
-  useEffect(() => {
-    const userLoggedIn = localStorage.getItem("accessToken");
-
-    if (userLoggedIn) {
-      router.replace("/enterprise/timeline");
-    }
-  }, [router]);
-
   return (
     <>
       <Navbar />
