@@ -57,7 +57,7 @@ export default function NewJob() {
     e.preventDefault();
 
     const job: Job = {
-      title: e.currentTarget.title.value,
+      title: e.currentTarget.titleInput.value,
       description: e.currentTarget.description.value,
       location: location
         .map((selected, index) =>
@@ -117,12 +117,12 @@ export default function NewJob() {
         <main>
           <form className="flex flex-col py-8 px-16" onSubmit={handleSubmit}>
             <span className="text-3xl mb-8">Publicar nova vaga</span>
-            <label htmlFor="title">Titulo</label>
+            <label htmlFor="titleInput">Titulo</label>
             <input
               className="py-2 px-2 border border-2 border-gray-500 w-[1280px]"
               type="text"
-              id="title"
-              name="title"
+              id="titleInput"
+              name="titleInput"
             />
 
             <span className="mt-8">Tipo da vaga</span>
