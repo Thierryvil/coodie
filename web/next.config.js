@@ -3,7 +3,7 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-  target: 'serverless',
+  output: "standalone"
 }
 
 module.exports = nextConfig
