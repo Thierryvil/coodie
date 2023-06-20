@@ -157,3 +157,17 @@ def test_get_all_jobs_from_an_enterprise(client, access_token):
     response = client.get("/jobs", headers=headers)
 
     assert response.status_code == 200
+
+
+def test_delete_job_successful(client, access_token):
+    headers = {"Authorization": f"Bearer {access_token}"}
+    response = client.delete("/jobs/1", headers=headers)
+
+    assert response.status_code == 200
+
+
+def test_delete_job_not_found(client, access_token):
+    headers = {"Authorization": f"Bearer {access_token}"}
+    response = client.delete("/jobs/99", headers=headers)
+
+    assert response.status_code == 404

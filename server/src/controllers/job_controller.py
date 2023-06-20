@@ -1,9 +1,8 @@
-from fastapi import HTTPException, status
-from sqlmodel import Session, select
-
 from db.config import engine
+from fastapi import HTTPException, status
 from schemas.job_schema import JobSchema
 from schemas.user_schema import UserType
+from sqlmodel import Session, select
 
 
 def create_new_job(job, user):
@@ -27,3 +26,14 @@ def get_all_jobs(user):
         jobs = session.exec(query).all()
         jobs_data = [JobSchema.from_orm(job) for job in jobs]
         return jobs_data
+
+
+def delete_job_by_id(id: int, user):
+    with Session(engine) as session:
+        query = select(JobSchema).where(JobSchema.enterprise_id == user.id)
+        job = session.exec(query).first()
+        if not job:
+            raise HTTPException(status.HTTP_404_NOT_FOUND)
+        session.delete(job)
+        session.commit()
+        return {"message": "Job deleted successfully"}

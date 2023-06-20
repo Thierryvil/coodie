@@ -1,16 +1,18 @@
 from os.path import abspath, dirname, join
 
-from sqlalchemy import inspect
-from sqlmodel import Session, SQLModel, create_engine
-
 from configs import settings
 
 # flake8: noqa
 from schemas.job_schema import JobSchema
 from schemas.user_schema import UserSchema, UserType
+from sqlalchemy import inspect
+from sqlmodel import Session, SQLModel, create_engine
 from utils.bcrypt import encrypt_password
 
-base_dir = join(abspath(dirname(__file__)), settings.DATABASE_NAME)  # type: ignore
+base_dir = join(
+    abspath(dirname(__file__)),  # type: ignore
+    settings.DATABASE_NAME,  # type: ignore
+)
 
 engine = create_engine(
     f"sqlite:///{base_dir}",
