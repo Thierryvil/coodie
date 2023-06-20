@@ -16,4 +16,4 @@ RUN apt-get update -y \
 
 COPY src/ /app/
 
-EXPOSE 8000
+EXPOSE 8080
