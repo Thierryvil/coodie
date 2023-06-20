@@ -16,8 +16,6 @@ export default NextAuth({
           password: credentials?.password ?? "",
         };
 
-        console.log(`COODIE LOG == ${data}`);
-
         const res = await fetch(`${COODIE_API_URL}/auth/token`, {
           method: "POST",
           headers: {
@@ -25,18 +23,18 @@ export default NextAuth({
           },
           body: new URLSearchParams(data),
         });
-        console.log(`COODIE LOG == ${res.json()}`);
 
         if (!res.ok) {
           throw new Error("Invalid credentials");
         }
 
         const user = await res.json();
-        if (user) {
-          return user;
-        } else {
+
+        if (!user) {
           return null;
         }
+
+        return user;
       },
     }),
   ],

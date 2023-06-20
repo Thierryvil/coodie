@@ -1,3 +1,8 @@
+# fly.toml app configuration file generated for coodie on 2023-06-19T16:19:57-03:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
 app = "coodie"
 primary_region = "gru"
 kill_signal = "SIGINT"
