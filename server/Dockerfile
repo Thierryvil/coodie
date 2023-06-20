@@ -16,6 +16,4 @@ RUN apt-get update -y \
 
 COPY src/ /app/
 
-EXPOSE 8080
-
-HEALTHCHECK CMD curl --fail http://localhost:8080 || exit 1
+EXPOSE 8000
