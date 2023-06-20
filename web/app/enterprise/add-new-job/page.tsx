@@ -182,7 +182,7 @@ export default function NewJob() {
               id="description"
             ></textarea>
             {loading ? (
-              <GreenButton text="Carregando..." size="large" disabled={true} />
+              <GreenButton text="Carregando..." size="medium" disabled={true} />
             ) : (
               <GreenButton text="Publicar" size="medium" />
             )}
