@@ -62,7 +62,7 @@ def test_delete_job_successful():
         regime="test",
         enterprise_id=enterprise.id,
     )
-
+    create_new_job(job, enterprise)
     delete_job_by_id(job.id, enterprise)  # type: ignore
 
     assert get_all_jobs(enterprise) == []

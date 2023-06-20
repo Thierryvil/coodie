@@ -30,7 +30,8 @@ def get_all_jobs(user):
 
 def delete_job_by_id(id: int, user):
     with Session(engine) as session:
-        query = select(JobSchema).where(JobSchema.enterprise_id == user.id)
+        query = select(JobSchema).where(
+            JobSchema.enterprise_id == user.id).where(JobSchema.id == id)
         job = session.exec(query).first()
         if not job:
             raise HTTPException(status.HTTP_404_NOT_FOUND)

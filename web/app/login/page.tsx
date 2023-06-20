@@ -59,7 +59,7 @@ export default function Login() {
 
   const { data: session, status } = useSession();
 
-  if (status === "authenticated") {
+  if (session) {
     router.push("/enterprise/timeline");
     return;
   }
