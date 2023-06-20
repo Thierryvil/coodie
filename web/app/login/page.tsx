@@ -14,6 +14,7 @@ import ErrorPopup from "../components/ErrorPopup";
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleError = (errorMessage: string) => {
@@ -30,6 +31,7 @@ export default function Login() {
 
   const sendLoginRequest = async (email: string, password: string) => {
     try {
+      setLoading(true);
       const response = await signIn("credentials", {
         redirect: false,
         email,
@@ -40,9 +42,10 @@ export default function Login() {
         handleError("Ocorreu um erro!");
         return;
       }
-
       router.push("/enterprise/timeline");
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       handleError("Ocorreu um erro!");
     }
   };
@@ -97,7 +100,11 @@ export default function Login() {
           </div>
           <label className="text-right text-sm">Esqueceu sua senha?</label>
           <div className="flex flex-col items-center py-20">
-            <GreenButton text="Entrar" size="large" />
+            {loading ? (
+              <GreenButton text="Carregando..." size="large" disabled={true} />
+            ) : (
+              <GreenButton text="Entrar" size="large" />
+            )}
             <span className="text-sm">Não possui conta? Registre-se agora</span>
           </div>
         </form>

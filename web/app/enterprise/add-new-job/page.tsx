@@ -30,6 +30,7 @@ export default function NewJob() {
   const [regime, setRegime] = useState(Array(3).fill(false));
   const [seniority, setSeniority] = useState(Array(3).fill(false));
   const [location, setLocation] = useState(Array(3).fill(false));
+  const [loading, setLoading] = useState(false);
 
   if (!session) {
     return <h1 className="text-center text-3xl">Access Denied</h1>;
@@ -55,6 +56,7 @@ export default function NewJob() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
 
     const job: Job = {
       title: e.currentTarget.titleInput.value,
@@ -82,6 +84,7 @@ export default function NewJob() {
       return;
     }
     push("/enterprise/timeline");
+    setLoading(false);
   };
 
   const sendNewJobRequest = async (job: Job) => {
@@ -178,7 +181,11 @@ export default function NewJob() {
               name="description"
               id="description"
             ></textarea>
-            <GreenButton text="Publicar" size="medium" />
+            {loading ? (
+              <GreenButton text="Carregando..." size="large" disabled={true} />
+            ) : (
+              <GreenButton text="Publicar" size="medium" />
+            )}
           </form>
         </main>
       </div>

@@ -1,9 +1,10 @@
 interface GreenButtonProps {
   text: string;
   size?: "small" | "medium" | "large";
+  disabled?: boolean;
 }
 
-export function GreenButton({ text, size }: GreenButtonProps) {
+export function GreenButton({ text, size, disabled }: GreenButtonProps) {
   let sizeClass = "";
 
   if (size === "small") {
@@ -17,6 +18,7 @@ export function GreenButton({ text, size }: GreenButtonProps) {
   return (
     <button
       className={`text-sm font-bold text-white bg-green-700 border-none ${sizeClass}`}
+      disabled={disabled}
     >
       {text}
     </button>
