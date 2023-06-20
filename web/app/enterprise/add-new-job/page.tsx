@@ -85,7 +85,6 @@ export default function NewJob() {
   };
 
   const sendNewJobRequest = async (job: Job) => {
-    console.log(job);
     const response = await fetch(`${COODIE_API_URL}/jobs`, {
       method: "POST",
       headers: {
