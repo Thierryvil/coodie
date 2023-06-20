@@ -55,36 +55,38 @@ export default function NewJob() {
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
+    try {
+      e.preventDefault();
+      setLoading(true);
+      const job: Job = {
+        title: e.currentTarget.titleInput.value,
+        description: e.currentTarget.description.value,
+        location: location
+          .map((selected, index) =>
+            selected ? locations[index].toLowerCase() : ""
+          )
+          .filter((item) => item !== ""),
+        seniority: seniority
+          .map((selected, index) =>
+            selected ? seniorities[index].toLowerCase() : ""
+          )
+          .filter((item) => item !== ""),
+        regime: regime
+          .map((selected, index) =>
+            selected ? regimes[index].toLowerCase() : ""
+          )
+          .filter((item) => item !== ""),
+      };
 
-    const job: Job = {
-      title: e.currentTarget.titleInput.value,
-      description: e.currentTarget.description.value,
-      location: location
-        .map((selected, index) =>
-          selected ? locations[index].toLowerCase() : ""
-        )
-        .filter((item) => item !== ""),
-      seniority: seniority
-        .map((selected, index) =>
-          selected ? seniorities[index].toLowerCase() : ""
-        )
-        .filter((item) => item !== ""),
-      regime: regime
-        .map((selected, index) =>
-          selected ? regimes[index].toLowerCase() : ""
-        )
-        .filter((item) => item !== ""),
-    };
-
-    const response = await sendNewJobRequest(job);
-    if (!response.ok) {
-      setError("Ocorreu um erro!");
-      return;
+      const response = await sendNewJobRequest(job);
+      if (!response.ok) {
+        setError("Ocorreu um erro!");
+        return;
+      }
+      push("/enterprise/timeline");
+    } finally {
+      setLoading(false);
     }
-    push("/enterprise/timeline");
-    setLoading(false);
   };
 
   const sendNewJobRequest = async (job: Job) => {

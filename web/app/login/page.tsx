@@ -1,13 +1,13 @@
 "use client";
 
-import React, { FormEvent, useContext, useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { Logo } from "../components/Logo";
 import "../global.css";
 import { GreenButton } from "../components/GreenButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import ErrorPopup from "../components/ErrorPopup";
 
@@ -43,10 +43,10 @@ export default function Login() {
         return;
       }
       router.push("/enterprise/timeline");
-      setLoading(false);
     } catch (error) {
-      setLoading(false);
       handleError("Ocorreu um erro!");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -56,6 +56,13 @@ export default function Login() {
     const password = e.currentTarget.password.value;
     sendLoginRequest(email, password);
   };
+
+  const { data: session, status } = useSession();
+
+  if (status === "authenticated") {
+    router.push("/enterprise/timeline");
+    return;
+  }
 
   return (
     <>

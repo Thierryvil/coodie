@@ -17,7 +17,9 @@ export function GreenButton({ text, size, disabled }: GreenButtonProps) {
 
   return (
     <button
-      className={`text-sm font-bold text-white bg-green-700 border-none ${sizeClass}`}
+      className={`text-sm font-bold text-white bg-green-700 border-none ${sizeClass} ${
+        disabled ? "btn-disabled" : ""
+      }`}
       disabled={disabled}
     >
       {text}
