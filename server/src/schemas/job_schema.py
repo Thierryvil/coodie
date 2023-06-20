@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import Optional
 
 from sqlmodel import Field, SQLModel
@@ -12,6 +13,7 @@ class JobSchema(SQLModel, table=True):
     seniority: str = Field()
     location: str = Field()
     regime: str = Field()
+    created_at: datetime = Field(default=datetime.utcnow(), nullable=False)
     enterprise_id: Optional[int] = Field(
         default=None,
         foreign_key="users.id",
