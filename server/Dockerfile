@@ -19,5 +19,3 @@ COPY src/ /app/
 EXPOSE 8080
 
 HEALTHCHECK CMD curl --fail http://localhost:8080 || exit 1
-
-CMD ["gunicorn", "app:app", "-w", "1", "-k", "uvicorn.workers.UvicornWorker", "-b", ":8080"]
