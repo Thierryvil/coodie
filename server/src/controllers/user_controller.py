@@ -1,12 +1,20 @@
-from fastapi import Depends, HTTPException, status
-from fastapi.security import OAuth2PasswordBearer
-from sqlmodel import Session
-
 from controllers.token_controller import decode_access_token
 from db.config import engine
+from fastapi import Depends, HTTPException, status
+from fastapi.security import OAuth2PasswordBearer
 from schemas.user_schema import UserSchema
+from sqlmodel import Session
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/token")
+
+
+def create_new_user(user):
+    with Session(engine) as session:
+        user_schema = UserSchema(**user.dict())
+        session.add(user_schema)
+        session.commit()
+        session.refresh(user_schema)
+        return user_schema
 
 
 def get_user_by_email(email: str):

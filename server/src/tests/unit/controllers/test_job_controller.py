@@ -1,6 +1,7 @@
 import pytest
 from controllers.job_controller import (create_new_job, delete_job_by_id,
                                         get_all_jobs)
+from controllers.user_controller import create_new_user
 from fastapi import HTTPException
 from models.job import Job
 from schemas.job_schema import JobSchema
@@ -48,27 +49,29 @@ def test_create_new_job_with_invalid_user_type(setup_and_teardown):
         create_new_job(job, user)
 
 
-def test_delete_job_successful():
+def test_delete_job_successful(setup_and_teardown):
     enterprise = UserSchema(
         email="test@email.com",
         password="123456",
         user_type=UserType.Enterprise,
     )
+    user = create_new_user(enterprise)
     job = JobSchema(
         description="test",
         title="test",
         location="test",
         seniority="test",
         regime="test",
-        enterprise_id=enterprise.id,
+        enterprise_id=user.id,
     )
-    create_new_job(job, enterprise)
-    delete_job_by_id(job.id, enterprise)  # type: ignore
+
+    job_db = create_new_job(job, enterprise)
+    delete_job_by_id(job_db.id, enterprise)  # type: ignore
 
     assert get_all_jobs(enterprise) == []
 
 
-def test_delete_job_not_found():
+def test_delete_job_not_found(setup_and_teardown):
     enterprise = UserSchema(
         email="test@email.com",
         password="123456",
