@@ -6,10 +6,14 @@ import { Footer } from "./components/Footer";
 import { Navbar } from "./components/Navbar";
 import { JobBox } from "./components/JobBox";
 import "./global.css";
+import { COODIE_API_URL } from "./constants";
 
 const zetta = Lexend_Zetta({ subsets: ["latin"] });
 
-export default function Home() {
+
+export default async function Home() {
+  await fetch(COODIE_API_URL ?? "") // Wakeup Backend
+
   return (
     <>
       <Navbar />
